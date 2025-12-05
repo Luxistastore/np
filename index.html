@@ -19,7 +19,6 @@
             --dusty-pink: #f2a6b8;
             --rose-gold: #e0a899;
             --dark-pink: #d44d80;
-            --soft-white: #fff9fb;
             --gold-accent: #e6c87a;
         }
         
@@ -31,7 +30,7 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--soft-white);
+            background-color: #fff9fb;
             color: #5a3d3d;
             min-height: 100vh;
             padding-bottom: 100px;
@@ -122,7 +121,6 @@
             min-height: 280px;
         }
         
-        /* Mobile-first image sizing */
         .product-img {
             width: 100%;
             height: auto;
@@ -132,7 +130,6 @@
             border-radius: 12px;
         }
         
-        /* Responsive image heights */
         @media (min-width: 992px) {
             .product-img-container {
                 min-height: 300px;
@@ -173,21 +170,34 @@
             padding: 0 15px;
         }
         
-        .product-price {
+        .price-container {
+            padding: 0 15px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .original-price {
+            color: #aaa;
+            font-size: 1.1rem;
+            text-decoration: line-through;
+            font-weight: 500;
+        }
+        
+        .discounted-price {
             color: var(--primary-pink);
             font-weight: 700;
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            padding: 0 15px;
-            display: flex;
-            align-items: center;
         }
         
-        .product-price::before {
-            content: "Nrs.";
-            font-size: 1rem;
-            margin-right: 5px;
-            color: var(--dusty-pink);
+        .discount-badge {
+            background: linear-gradient(45deg, var(--primary-pink), var(--dark-pink));
+            color: white;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
         
         .product-description {
@@ -239,6 +249,26 @@
             box-shadow: 0 8px 20px rgba(255, 102, 178, 0.5);
             color: white;
             background: linear-gradient(45deg, var(--dark-pink), var(--primary-pink));
+        }
+        
+        .coming-soon-btn {
+            background: linear-gradient(45deg, #cccccc, #999999);
+            border: none;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            margin-top: auto;
+            width: calc(100% - 30px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            cursor: not-allowed;
         }
         
         .social-section {
@@ -340,6 +370,31 @@
             z-index: 2;
         }
         
+        .coming-soon-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            border-radius: 20px;
+        }
+        
+        .coming-soon-text {
+            background: linear-gradient(45deg, var(--primary-pink), var(--dark-pink));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            transform: rotate(-5deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
         .toast {
             position: fixed;
             top: 20px;
@@ -413,7 +468,7 @@
             border-right: none;
             font-weight: 600;
             color: var(--dark-pink);
-            background-color: var(--soft-white);
+            background-color: #fff9fb;
         }
         
         .modal-content {
@@ -537,20 +592,24 @@
 
     <!-- Main Content -->
     <main class="container">
-        <div class="premium-tag">✨ PREMIUM COLLECTION ✨</div>
+        <div class="premium-tag">✨ LIMITED STOCK - SPECIAL DISCOUNTS ✨</div>
         <div class="row">
            <!-- Product 1 -->
             <div class="col-md-6 col-lg-4 mb-4">
-                <div class="product-card p-3" onclick="showProductDetails('hair-clips')">
+                <div class="product-card p-3" onclick="showProductDetails('pocket-mirror')">
                     <div class="product-img-container">
-                        <img src="product1.jpg" alt="Hair Clips" class="product-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZkN2VlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJQb3BwaW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJkNDRkODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPkhhaXIgQ2xpcHM8L3RleHQ+PC9zdmc+'">
+                        <img src="product1.jpg" alt="Pocket Mirror With Comb" class="product-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZkN2VlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJQb3BwaW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJkNDRkODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPlBvY2tldCBNaXJyb3IgV2l0aCBDb21iPC90ZXh0Pjwvc3ZnPg=='">
                     </div>
-                    <div class="product-badge">BESTSELLER</div>
-                    <h5 class="product-name">Hair Clips</h5>
-                    <div class="product-price">49</div>
-                    <p class="product-description">Beautiful and durable hair clips that add style to your look. Available in multiple colors.</p>
-                    <div class="stock-status">In stock</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); buyProduct('Hair Clips', 49, 'Beautiful and durable hair clips that add style to your look. Available in multiple colors.')">
+                    <div class="product-badge">PORTABLE</div>
+                    <h5 class="product-name">Pocket Mirror With Comb</h5>
+                    <div class="price-container">
+                        <span class="original-price">Nrs. 170</span>
+                        <span class="discounted-price">Nrs. 149</span>
+                        <span class="discount-badge">Save 12%</span>
+                    </div>
+                    <p class="product-description">Cute & compact 2-in-1 beauty essential! Perfect mirror + detachable comb for flawless touch-ups anywhere.</p>
+                    <div class="stock-status">Only 2 left!</div>
+                    <button class="buy-btn" onclick="event.stopPropagation(); buyProduct('Pocket Mirror With Comb', 149, 'Cute & compact 2-in-1 beauty essential! Perfect mirror + detachable comb for flawless touch-ups anywhere.')">
                         <i class="fab fa-whatsapp"></i> Buy Now
                     </button>
                 </div>
@@ -558,15 +617,20 @@
             
             <!-- Product 2 -->
             <div class="col-md-6 col-lg-4 mb-4">
-                <div class="product-card p-3" onclick="showProductDetails('hair-bands')">
+                <div class="product-card p-3" onclick="showProductDetails('lip-liner')">
                     <div class="product-img-container">
-                        <img src="product2.jpg" alt="Hair Bands" class="product-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZkN2VlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJQb3BwaW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJkNDRkODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPkhhaXIgQmFuZHM8L3RleHQ+PC9zdmc+'">
+                        <img src="product2.jpg" alt="Swiss Beauty Lip Liner" class="product-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZkN2VlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJQb3BwaW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJkNDRkODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPlN3aXNzIEJlYXV0eSBMaXAgTGluZXI8L3RleHQ+PC9zdmc+'">
                     </div>
-                    <h5 class="product-name">Hair Bands</h5>
-                    <div class="product-price">49</div>
-                    <p class="product-description">Comfortable and stylish hair bands perfect for any occasion. Stretchy material for perfect fit.</p>
-                    <div class="stock-status">In stock</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); buyProduct('Hair Bands', 49, 'Comfortable and stylish hair bands perfect for any occasion. Stretchy material for perfect fit.')">
+                    <div class="product-badge">PREMIUM</div>
+                    <h5 class="product-name">Swiss Beauty Lip Liner</h5>
+                    <div class="price-container">
+                        <span class="original-price">Nrs. 150</span>
+                        <span class="discounted-price">Nrs. 129</span>
+                        <span class="discount-badge">Save 14%</span>
+                    </div>
+                    <p class="product-description">Professional Royal Red liner - ultra-precise, smudge-proof, & long-lasting for perfect lip definition.</p>
+                    <div class="stock-status">Only 3 left!</div>
+                    <button class="buy-btn" onclick="event.stopPropagation(); buyProduct('Swiss Beauty Lip Liner', 129, 'Professional Royal Red liner - ultra-precise, smudge-proof, & long-lasting for perfect lip definition.')">
                         <i class="fab fa-whatsapp"></i> Buy Now
                     </button>
                 </div>
@@ -574,55 +638,68 @@
             
             <!-- Product 3 -->
             <div class="col-md-6 col-lg-4 mb-4">
-                <div class="product-card p-3" onclick="showProductDetails('rose-lips-oil')">
+                <div class="product-card p-3" onclick="showProductDetails('bracelet')">
                     <div class="product-img-container">
-                        <img src="product3.jpg" alt="Rose Lips Oil" class="product-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZkN2VlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJQb3BwaW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJkNDRkODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPlJvc2UgTGlwcyBPaWw8L3RleHQ+PC9zdmc+'">
+                        <img src="product3.jpg" alt="Stainless Steel Bracelet" class="product-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZkN2VlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJQb3BwaW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJkNDRkODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPlN0YWlubGVzcyBTdGVlbCBCcmFjZWxldDwvdGV4dD48L3N2Zz4='">
                     </div>
-                    <div class="product-badge">NEW</div>
-                    <h5 class="product-name">Rose Lips Oil</h5>
-                    <div class="product-price">299</div>
-                    <p class="product-description">Nourishing rose oil for soft and hydrated lips. Natural ingredients, perfect for daily use.</p>
-                    <div class="stock-status">In stock</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); buyProduct('Rose Lips Oil', 299, 'Nourishing rose oil for soft and hydrated lips. Natural ingredients, perfect for daily use.')">
+                    <div class="product-badge">ADJUSTABLE</div>
+                    <h5 class="product-name">Stainless Steel Bracelet</h5>
+                    <div class="price-container">
+                        <span class="original-price">Nrs. 350</span>
+                        <span class="discounted-price">Nrs. 299</span>
+                        <span class="discount-badge">Save 15%</span>
+                    </div>
+                    <p class="product-description">Elegant adjustable stainless steel bracelet - durable, tarnish-free, and perfect for daily elegance.</p>
+                    <div class="stock-status">Only 2 left!</div>
+                    <button class="buy-btn" onclick="event.stopPropagation(); buyProduct('Stainless Steel Bracelet', 299, 'Elegant adjustable stainless steel bracelet - durable, tarnish-free, and perfect for daily elegance.')">
                         <i class="fab fa-whatsapp"></i> Buy Now
                     </button>
                 </div>
             </div>
             
-            <!-- Product 4 -->
+            <!-- Product 4 - COMING SOON -->
             <div class="col-md-6 col-lg-4 mb-4">
-                <div class="product-card p-3" onclick="showProductDetails('clips-clutcher')">
+                <div class="product-card p-3">
+                    <div class="coming-soon-overlay">
+                        <div class="coming-soon-text">COMING SOON</div>
+                    </div>
                     <div class="product-img-container">
                         <img src="product4.jpg" alt="Clips Clutcher" class="product-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZkN2VlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJQb3BwaW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJkNDRkODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPkNsaXBzIENsdXRjaGVyPC90ZXh0Pjwvc3ZnPg=='">
                     </div>
                     <h5 class="product-name">Clips Clutcher</h5>
-                    <div class="product-price">59</div>
+                    <div class="price-container">
+                        <span class="discounted-price">Nrs. 59</span>
+                    </div>
                     <p class="product-description">Versatile hair accessory that holds your hair securely while looking fashionable.</p>
-                    <div class="stock-status">In stock</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); buyProduct('Clips Clutcher', 59, 'Versatile hair accessory that holds your hair securely while looking fashionable.')">
-                        <i class="fab fa-whatsapp"></i> Buy Now
+                    <div class="stock-status">Coming Soon</div>
+                    <button class="coming-soon-btn">
+                        <i class="far fa-clock"></i> Coming Soon
                     </button>
                 </div>
             </div>
             
-            <!-- Product 5 -->
+            <!-- Product 5 - COMING SOON -->
             <div class="col-md-6 col-lg-4 mb-4">
-                <div class="product-card p-3" onclick="showProductDetails('elegant-earrings')">
+                <div class="product-card p-3">
+                    <div class="coming-soon-overlay">
+                        <div class="coming-soon-text">COMING SOON</div>
+                    </div>
                     <div class="product-img-container">
                         <img src="product5.jpg" alt="Elegant Earrings" class="product-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZkN2VlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJQb3BwaW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJkNDRkODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPkVhcnJpbmdzPC90ZXh0Pjwvc3ZnPg=='">
                     </div>
                     <div class="product-badge">POPULAR</div>
                     <h5 class="product-name">Elegant Earrings</h5>
-                    <div class="product-price">450</div>
+                    <div class="price-container">
+                        <span class="discounted-price">Nrs. 450</span>
+                    </div>
                     <p class="product-description">Beautifully crafted earrings that add elegance to any outfit. Hypoallergenic materials.</p>
-                    <div class="stock-status">In stock</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); buyProduct('Elegant Earrings', 450, 'Beautifully crafted earrings that add elegance to any outfit. Hypoallergenic materials.')">
-                        <i class="fab fa-whatsapp"></i> Buy Now
+                    <div class="stock-status">Coming Soon</div>
+                    <button class="coming-soon-btn">
+                        <i class="far fa-clock"></i> Coming Soon
                     </button>
                 </div>
             </div>
-            
-       
+        </div>
     </main>
 
     <!-- Footer -->
@@ -636,7 +713,7 @@
                 <div class="col-md-4 mb-4">
                     <h5>Contact Information</h5>
                     <p><i class="fas fa-phone"></i> Phone: +977 9860934654</p>
-                    <p><i class="fas fa-envelope"></i> Email: info@luxistastore.com</p>
+                    <p><i class="fas fa-envelope"></i> Email: luxistastoreofficialnp@gmail.com</p>
                     <p><i class="fas fa-map-marker-alt"></i> Location: Birtamode, Jhapa, Nepal</p>
                     <p><i class="fas fa-truck"></i> Free Delivery in Birtamode City</p>
                 </div>
@@ -659,7 +736,6 @@
         <a href="https://www.instagram.com/luxistastorenp/" target="_blank" class="social-btn instagram mb-2">
             <i class="fab fa-instagram"></i>
         </a>
-    
         <a href="https://www.tiktok.com/@luxistastorenp" target="_blank" class="social-btn tiktok mb-2">
             <i class="fab fa-tiktok"></i>
         </a>
@@ -686,7 +762,11 @@
                         </div>
                         <div class="col-md-6">
                             <h3 id="modalProductName"></h3>
-                            <div class="product-price mb-3" id="modalProductPrice"></div>
+                            <div class="price-container mb-3">
+                                <span class="original-price" id="modalOriginalPrice"></span>
+                                <span class="discounted-price" id="modalDiscountedPrice"></span>
+                                <span class="discount-badge" id="modalDiscountBadge"></span>
+                            </div>
                             <p id="modalProductDescription"></p>
                             
                             <div class="product-features mt-4" id="modalProductFeatures">
@@ -718,90 +798,54 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Product details data
+        // Product details data with original and discounted prices
         const productDetails = {
-            'hair-clips': {
-                name: 'Hair Clips',
-                price: 49,
-                description: 'Beautiful and durable hair clips that add style to your look. Available in multiple colors.',
+            'pocket-mirror': {
+                name: 'Pocket Mirror With Comb',
+                originalPrice: 170,
+                discountedPrice: 149,
+                description: 'Cute & compact 2-in-1 beauty essential! Perfect mirror + detachable comb for flawless touch-ups anywhere.',
                 image: 'product1.jpg',
+                stock: 2,
                 features: [
-                    'Durable and long-lasting',
-                    'Available in 6 different colors',
-                    'Perfect for all hair types',
-                    'Easy to use and remove',
-                    'Lightweight and comfortable',
-                    'Premium quality materials'
+                    'Compact & pocket-friendly design',
+                    'Crystal-clear mirror with protective case',
+                    'Detachable fine-tooth comb included',
+                    'Perfect for purse, car, or office',
+                    'Durable scratch-resistant surface',
+                    'Multiple stylish color options'
                 ]
             },
-            'hair-bands': {
-                name: 'Hair Bands',
-                price: 49,
-                description: 'Comfortable and stylish hair bands perfect for any occasion. Stretchy material for perfect fit.',
+            'lip-liner': {
+                name: 'Swiss Beauty Lip Liner',
+                originalPrice: 150,
+                discountedPrice: 129,
+                description: 'Professional Royal Red liner - ultra-precise, smudge-proof, & long-lasting for perfect lip definition.',
                 image: 'product2.jpg',
+                stock: 3,
                 features: [
-                    'Stretchy and comfortable material',
-                    'One size fits all',
-                    'Available in various colors and patterns',
-                    'Perfect for workouts or casual wear',
-                    'Does not pull or damage hair',
-                    'Easy to clean and maintain'
+                    'Swiss Beauty premium formula',
+                    'Intense Royal Red pigment',
+                    'Waterproof & smudge-proof',
+                    '12-hour long-lasting wear',
+                    'Creamy smooth application',
+                    'Hypoallergenic & skin-friendly'
                 ]
             },
-            'rose-lips-oil': {
-                name: 'Rose Lips Oil',
-                price: 299,
-                description: 'Nourishing rose oil for soft and hydrated lips. Natural ingredients, perfect for daily use.',
+            'bracelet': {
+                name: 'Stainless Steel Bracelet',
+                originalPrice: 350,
+                discountedPrice: 299,
+                description: 'Elegant adjustable stainless steel bracelet - durable, tarnish-free, and perfect for daily elegance.',
                 image: 'product3.jpg',
+                stock: 2,
                 features: [
-                    '100% natural ingredients',
-                    'Hydrates and nourishes lips',
-                    'Reduces dryness and chapping',
-                    'Light rose fragrance',
-                    'Perfect for daily use',
-                    'Compact and travel-friendly'
-                ]
-            },
-            'clips-clutcher': {
-                name: 'Clips Clutcher',
-                price: 59,
-                description: 'Versatile hair accessory that holds your hair securely while looking fashionable.',
-                image: 'product4.jpg',
-                features: [
-                    'Strong grip for all hair types',
-                    'Elegant and stylish design',
-                    'Easy to use and remove',
-                    'Durable construction',
-                    'Available in multiple colors',
-                    'Perfect for up-dos and half-up styles'
-                ]
-            },
-            'elegant-earrings': {
-                name: 'Elegant Earrings',
-                price: 450,
-                description: 'Beautifully crafted earrings that add elegance to any outfit. Hypoallergenic materials.',
-                image: 'product5.jpg',
-                features: [
-                    'Hypoallergenic materials',
-                    'Lightweight and comfortable',
-                    'Elegant design for any occasion',
-                    'High-quality craftsmanship',
-                    'Perfect gift option',
-                    'Comes in a beautiful gift box'
-                ]
-            },
-            'silk-scarf': {
-                name: 'Silk Scarf',
-                price: 600,
-                description: 'Luxurious silk scarf with vibrant patterns. Perfect accessory for hair, neck, or handbag.',
-                image: 'product6.jpg',
-                features: [
-                    '100% pure silk material',
-                    'Vibrant and long-lasting colors',
-                    'Multiple styling options',
-                    'Lightweight and breathable',
-                    'Elegant packaging',
-                    'Handcrafted with care'
+                    'High-quality 316L stainless steel',
+                    'Size-adjustable (fits all wrists)',
+                    'Tarnish & rust resistant',
+                    'Hypoallergenic & nickel-free',
+                    'Waterproof for daily wear',
+                    'Minimalist elegant design'
                 ]
             }
         };
@@ -818,7 +862,13 @@
             currentQuantity = 1;
             
             document.getElementById('modalProductName').textContent = product.name;
-            document.getElementById('modalProductPrice').innerHTML = `<span>${product.price}</span>`;
+            
+            // Set prices in modal
+            const discountPercentage = Math.round(((product.originalPrice - product.discountedPrice) / product.originalPrice) * 100);
+            document.getElementById('modalOriginalPrice').textContent = `Nrs. ${product.originalPrice}`;
+            document.getElementById('modalDiscountedPrice').textContent = `Nrs. ${product.discountedPrice}`;
+            document.getElementById('modalDiscountBadge').textContent = `Save ${discountPercentage}%`;
+            
             document.getElementById('modalProductDescription').textContent = product.description;
             document.getElementById('modalProductImage').src = product.image;
             document.getElementById('productQuantity').value = currentQuantity;
@@ -839,9 +889,13 @@
 
         // Quantity functions
         function increaseQuantity() {
-            if (currentQuantity < 10) {
+            if (!currentProduct) return;
+            
+            if (currentQuantity < currentProduct.stock) {
                 currentQuantity++;
                 document.getElementById('productQuantity').value = currentQuantity;
+            } else {
+                showNotification(`Only ${currentProduct.stock} items available in stock!`);
             }
         }
 
@@ -856,12 +910,14 @@
         function buyFromModal() {
             if (!currentProduct) return;
             
-            const totalPrice = currentProduct.price * currentQuantity;
+            const totalPrice = currentProduct.discountedPrice * currentQuantity;
             const message = `Hello! I'm interested in purchasing the following product from Luxista Store:
             
 Product: ${currentProduct.name}
 Quantity: ${currentQuantity}
-Price: Nrs. ${totalPrice}
+Original Price: Nrs. ${currentProduct.originalPrice}
+Discounted Price: Nrs. ${currentProduct.discountedPrice}
+Total: Nrs. ${totalPrice}
 Description: ${currentProduct.description}
 
 Can you provide more details and help me with the purchase?`;
@@ -880,10 +936,26 @@ Can you provide more details and help me with the purchase?`;
 
         // Original buy product function
         function buyProduct(productName, price, description) {
+            let originalPrice = 0;
+            let discountedPrice = price;
+            
+            // Find original price based on product name
+            if (productName.includes('Pocket Mirror')) {
+                originalPrice = 170;
+                discountedPrice = 149;
+            } else if (productName.includes('Lip Liner')) {
+                originalPrice = 150;
+                discountedPrice = 129;
+            } else if (productName.includes('Bracelet')) {
+                originalPrice = 350;
+                discountedPrice = 299;
+            }
+            
             const message = `Hello! I'm interested in purchasing the following product from Luxista Store:
             
 Product: ${productName}
-Price: Nrs. ${price}
+Original Price: Nrs. ${originalPrice}
+Discounted Price: Nrs. ${discountedPrice}
 Description: ${description}
 
 Can you provide more details and help me with the purchase?`;
